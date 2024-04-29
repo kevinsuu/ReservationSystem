@@ -3,11 +3,11 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
 exports.login = async (req, res) => {
-  const { username, password } = req.body;
+  const { name, password } = req.body;
 
   try {
     // 從數據庫中查找使用者
-    const user = await User.findOne({ where: { username } });
+    const user = await User.findOne({ where: { name } });
 
     // 如果找不到使用者，返回錯誤
     if (!user) {
@@ -25,7 +25,7 @@ exports.login = async (req, res) => {
     }
 
     // 如果密碼匹配，建立 JWT
-    const token = jwt.sign({ username: user.username }, "kevin", { expiresIn: "1h" });
+    const token = jwt.sign({ name: user.name }, "kevin", { expiresIn: "1h" });
 
     // 將 JWT 傳送回客戶端
     res.json({ token });
@@ -36,15 +36,27 @@ exports.login = async (req, res) => {
 };
 
 exports.resetPassword = async (req, res) => {
-  const { username, password } = req.body;
-
+  const { name, email, newPassword } = req.body;
+  console.log(name, email, newPassword);
   try {
-    // 使用 Sequelize 的 create 方法來創建新的使用者帳戶
-    await User.create({ username, password });
-    res.send("User registered successfully");
+    if (!name || !email) {
+      return res.status(400).json({ message: "Name and email are required" });
+    }
+
+    const user = await User.findOne({ where: { name, email } });
+
+    if (!user) {
+      return res.status(404).send("User not found");
+    }
+
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+    await user.update({ password: hashedPassword });
+
+    res.json({ message: "Password reset successfully" });
   } catch (err) {
-    // 如果創建過程中出現錯誤，返回錯誤信息
-    console.error("Error registering user:", err);
-    res.status(500).send("Error registering user");
+    // 如果過程中出現錯誤，返回錯誤信息
+    console.error("Error resetting password:", err);
+    res.status(500).send("Error resetting password");
   }
 };

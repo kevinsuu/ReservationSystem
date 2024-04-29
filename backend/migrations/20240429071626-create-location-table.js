@@ -1,9 +1,7 @@
-"use strict";
-
-/** @type {import('sequelize-cli').Migration} */
+// location migration file
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("users", {
+    await queryInterface.createTable("locations", {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -11,18 +9,6 @@ module.exports = {
       },
       name: {
         type: Sequelize.STRING,
-        allowNull: false,
-      },
-      email: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      password: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      rolesId: {
-        type: Sequelize.INTEGER,
         allowNull: false,
       },
       createdAt: {
@@ -35,8 +21,7 @@ module.exports = {
       },
     });
   },
-
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("users");
+    await queryInterface.dropTable("locations");
   },
 };

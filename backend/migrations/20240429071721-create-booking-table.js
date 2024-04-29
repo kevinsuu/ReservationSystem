@@ -1,27 +1,21 @@
-"use strict";
-
-/** @type {import('sequelize-cli').Migration} */
+// booking migration file
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("users", {
+    await queryInterface.createTable("bookings", {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
       },
-      name: {
+      userName: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      email: {
-        type: Sequelize.STRING,
+      locationTimesId: {
+        type: Sequelize.INTEGER,
         allowNull: false,
       },
-      password: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      rolesId: {
+      totalCost: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
@@ -35,8 +29,7 @@ module.exports = {
       },
     });
   },
-
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("users");
+    await queryInterface.dropTable("bookings");
   },
 };
