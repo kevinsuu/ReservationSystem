@@ -14,7 +14,7 @@ module.exports = {
       },
       {
         name: "admin",
-        email: "john_doe@gmail.com",
+        email: "admin@gmail.com",
         password: "admin",
         rolesId: 1,
         createdAt: new Date(),
@@ -39,6 +39,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkDelete("users", null, {});
+    await queryInterface.bulkDelete("users", {});
   },
 };

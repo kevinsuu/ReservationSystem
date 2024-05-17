@@ -11,7 +11,7 @@ const authMiddleware = require("../middleware/authMiddleware");
 
 // 定義路由
 router.post("/api/login", user.login);
-router.post("/api/rest", user.resetPassword);
+router.post("/api/reset", user.resetPassword);
 
 router.post("/api/register", controller.register);
 

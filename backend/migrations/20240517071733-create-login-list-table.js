@@ -1,29 +1,19 @@
-"use strict";
-
-/** @type {import('sequelize-cli').Migration} */
+// role migration file
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("users", {
+    await queryInterface.createTable("loginLists", {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
-      },
-      name: {
-        type: Sequelize.STRING,
-        allowNull: false,
       },
       email: {
         type: Sequelize.STRING,
         unique: true,
         allowNull: false,
       },
-      password: {
+      token: {
         type: Sequelize.STRING,
-        allowNull: false,
-      },
-      rolesId: {
-        type: Sequelize.INTEGER,
         allowNull: false,
       },
       createdAt: {
@@ -36,8 +26,7 @@ module.exports = {
       },
     });
   },
-
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("users");
+    await queryInterface.dropTable("loginLists");
   },
 };

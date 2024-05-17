@@ -1,13 +1,14 @@
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const sequelize = require("../database/connection"); // 引入 Sequelize 实例
 
 exports.login = async (req, res) => {
-  const { name, password } = req.body;
+  const { email, password } = req.body;
 
   try {
     // 從數據庫中查找使用者
-    const user = await User.findOne({ where: { name } });
+    const user = await User.findOne({ where: { email } });
 
     // 如果找不到使用者，返回錯誤
     if (!user) {
@@ -25,7 +26,21 @@ exports.login = async (req, res) => {
     }
 
     // 如果密碼匹配，建立 JWT
-    const token = jwt.sign({ name: user.name }, "kevin", { expiresIn: "1h" });
+    const token = jwt.sign({ email: user.email }, "kevin", { expiresIn: "1h" });
+    await sequelize.query(
+      `INSERT INTO "loginLists" ("email", "token", "createdAt", "updatedAt") 
+       VALUES (:email, :token, :createdAt, :updatedAt)
+       ON CONFLICT ("email") DO UPDATE SET "token" = :token`,
+      {
+        replacements: {
+          email: user.email,
+          token,
+          createdAt: new Date(), // Provide current date/time
+          updatedAt: new Date(), // Provide current date/time
+        },
+        type: sequelize.QueryTypes.INSERT,
+      }
+    );
 
     // 將 JWT 傳送回客戶端
     res.json({ token });
