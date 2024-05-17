@@ -12,12 +12,6 @@ services:
       - "5432:5432"
     volumes:
       - .:/var/lib/postgresql/RS-data
-  redis:
-    container_name: redis
-    image: redis
-    ports:
-      - "6379:6379"  # 如果你需要从外部访问 Redis，可以映射 Redis 默认端口
-
   nginx:
     image: nginx
     # restart: always
