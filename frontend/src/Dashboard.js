@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import MuiDrawer from "@mui/material/Drawer";
@@ -62,9 +62,63 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== "open" 
 }));
 
 const defaultTheme = createTheme();
-
+defaultTheme.typography = {
+  fontFamily: `huninn`,
+  pxToRem: (size) => `${(size / 16) * 1}rem`,
+};
 export default function Dashboard() {
   const [open, setOpen] = React.useState(true);
+  const [announcements, setAnnouncements] = useState([]);
+  const displayedAnnouncements = announcements;
+
+  useEffect(() => {
+    fetchAnnouncements();
+  }, []);
+
+  const fetchAnnouncements = async () => {
+    try {
+      const response = await fetch(process.env.REACT_APP_ANNOUNCEMENTS_API_URL);
+      const data = [
+        {
+          id: 1,
+          title: "◖ 寵 愛 媽 咪 ◗ 暖心大回饋 Part 2",
+          content: "2024-05-13",
+          url: "https://www.yhsports.com.tw/pages.php?pa=news-detail&news_id=66",
+          imageUrl: "https://www.yhsports.com.tw/upload_files/news/thumb/1715565575_DpXas.jpg?v=1715565575",
+        },
+        {
+          id: 2,
+          title: "◖ 寵 愛 媽 咪 ◗ 暖心大回饋",
+          content: "2024-05-10",
+          url: "https://www.yhsports.com.tw/pages.php?pa=news-detail&news_id=65",
+          imageUrl: "https://www.yhsports.com.tw/upload_files/news/thumb/1715323827_BKItx.jpg?v=1715323827",
+        },
+        {
+          id: 3,
+          title: "進入體適能中心健人必備",
+          content: "2023-08-01",
+          url: "https://www.yhsports.com.tw/pages.php?pa=news-detail&news_id=15",
+          imageUrl: "https://www.yhsports.com.tw/upload_files/news/thumb/1694403775_BsYS2.png?v=1694403775",
+        },
+        {
+          id: 4,
+          title: "離峰也能半場臨租啦",
+          content: "2020-11-23",
+          url: "https://www.yhsports.com.tw/pages.php?pa=news-detail&news_id=8",
+          imageUrl: "https://www.yhsports.com.tw/upload_files/news/thumb/1693388349_dYjz7.png?v=1694163932",
+        },
+      ];
+      setAnnouncements(data);
+      // if (response.ok) {
+      //   const data = await response.json();
+      //   setAnnouncements(data);
+      // } else {
+      //   console.error("Failed to fetch announcements");
+      // }
+    } catch (error) {
+      console.error("Error fetching announcements:", error);
+    }
+  };
   const toggleDrawer = () => {
     setOpen(!open);
   };
@@ -95,7 +149,7 @@ export default function Dashboard() {
             </IconButton>
             <Typography component="h1" variant="h6" color="inherit" noWrap sx={{ flexGrow: 1, color: "black" }}>
               <div className="marquee">
-                <span>羽球測試</span>
+                <span>最新消息 NEWS</span>
               </div>
             </Typography>
           </Toolbar>
@@ -133,19 +187,29 @@ export default function Dashboard() {
           }}
         >
           <Toolbar />
-          <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-            <Grid container spacing={3}>
-              <Grid container spacing={3}>
-                <Grid item xs={12} md={6} lg={6}>
-                  <Paper sx={{ marginTop: "40px", p: 2, display: "flex", flexDirection: "column" }}>
-                    <Typography variant="h5" gutterBottom>
-                      300 天
-                    </Typography>
-                  </Paper>
-                </Grid>
+
+          <Grid container spacing={3}>
+            {displayedAnnouncements.map((announcement) => (
+              <Grid item key={announcement.id} md={3} lg={3}>
+                <Paper sx={{ height: "100%", width: "100%", marginTop: "20px", p: 2, display: "flex", flexDirection: "column", flexGrow: 1 }}>
+                  <a href={announcement.url}>
+                    <img src={announcement.imageUrl} alt={announcement.title} style={{ maxWidth: "100%", height: "auto" }} />
+                  </a>
+                  <Typography variant="body1" sx={{ marginTop: "" }}>
+                    {announcement.content}
+                  </Typography>
+                  <Typography variant="h3" gutterBottom>
+                    {announcement.title.split("\n").map((line, index) => (
+                      <React.Fragment key={index}>
+                        {line}
+                        <br />
+                      </React.Fragment>
+                    ))}
+                  </Typography>
+                </Paper>
               </Grid>
-            </Grid>
-          </Container>
+            ))}
+          </Grid>
         </Box>
       </Box>
     </ThemeProvider>

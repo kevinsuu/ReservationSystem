@@ -14,7 +14,12 @@ import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
 import { Link } from "react-router-dom";
 
-const defaultTheme = createTheme();
+const defaultTheme = createTheme({
+  typography: {
+    fontFamily: `huninn, Arial, sans-serif`,
+    pxToRem: (size) => `${(size / 16) * 1}rem`,
+  },
+});
 
 export default function SignInSide() {
   const navigate = useNavigate();
@@ -35,6 +40,9 @@ export default function SignInSide() {
       });
 
       if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem("userData", JSON.stringify(data)); // Store response data in localStorage
+
         navigate(`/homepage`);
       } else {
         setError(true);
@@ -92,6 +100,7 @@ export default function SignInSide() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
+
               <Button
                 type="submit"
                 fullWidth

@@ -1,4 +1,10 @@
+/* font.css */
 @font-face {
-    font-family: 'MyFont';
-    src: url('../font/jf-openhuninn-2.0.ttf') format('truetype');
-  }
+  font-family: 'jf-openhuninn-2.0';
+  src: url('./jf-openhuninn-2.0.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+#root {
+  font-family: 'jf-openhuninn-2.0', sans-serif; /* 使用您定义的字体 */
+}

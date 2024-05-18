@@ -64,7 +64,10 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== "open" 
 }));
 
 const defaultTheme = createTheme();
-
+defaultTheme.typography = {
+  fontFamily: `huninn`,
+  pxToRem: (size) => `${(size / 16) * 1}rem`,
+};
 export default function Change() {
   const [open, setOpen] = useState(true);
   const [selectedImageIndex, setSelectedImageIndex] = useState(null);

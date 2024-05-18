@@ -14,7 +14,10 @@ import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
 
 const defaultTheme = createTheme();
-
+defaultTheme.typography = {
+  fontFamily: `huninn`,
+  pxToRem: (size) => `${(size / 16) * 1}rem`,
+};
 export default function Register() {
   const navigate = useNavigate();
   const [error, setError] = useState(false);
