@@ -1,6 +1,9 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 const app = express();
+
+app.use(cors());
 
 // 設定 body-parser 以處理 POST 請求
 app.use(bodyParser.urlencoded({ extended: true }));
