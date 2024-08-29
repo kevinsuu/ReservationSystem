@@ -1,9 +1,9 @@
 // models/User.js
 
-const DataTypes = require("sequelize");
-const sequelize = require("../database/connection");
+const DataTypes = require('sequelize');
+const sequelize = require('../database/connection');
 
-const User = sequelize.define("users", {
+const User = sequelize.define('users', {
   // 定義 user 資料表的字段
   id: {
     type: DataTypes.INTEGER,

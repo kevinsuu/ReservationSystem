@@ -8,13 +8,15 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 RUN npm cache clean --force
-# 安裝應用程式的依賴
+
+# 在容器內安裝應用程式的依賴
 RUN npm install
+
 # 複製應用程式代碼到工作目錄
 COPY . .
 
-# 暴露應用程式所使用的端口（如果需要）
+# 暴露應用程式所使用的端口
 EXPOSE 3000
 
 # 定義容器啟動時運行的命令
-CMD ["node", "app.js"]
+CMD ["node", "server.js"]

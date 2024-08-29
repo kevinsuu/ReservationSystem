@@ -1,1 +1,29 @@
+# Node.js
 node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+
+# dotenv environment variables file
+.env
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Docker related files
+docker-compose.override.yml
+docker-compose.override.yaml
+docker-sync/
+.dockerignore
+
+# IDE/Editor specific files
+.vscode/
+.idea/
+*.swp

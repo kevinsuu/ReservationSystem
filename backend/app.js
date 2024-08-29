@@ -1,20 +1,17 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
+//app.js
+const express = require('express');
 const app = express();
 
-app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
-// 設定 body-parser 以處理 POST 請求
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+// 路由設置
+const indexRouter = require('./routes/index');
+app.use('/', indexRouter);
 
-// 設定路由
-const routes = require("./routes");
-app.use("/", routes);
-
-// 監聽端口
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+// 其他路由或錯誤處理邏輯
+app.use((req, res, next) => {
+  res.status(404).send('Not Found');
 });
+
+module.exports = app;
