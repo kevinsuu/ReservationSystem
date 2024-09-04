@@ -1,5 +1,5 @@
 services:
-  postgres:
+  reservation_system_postgres:
     image: reservation_system_postgres
     # restart: always
     environment:
@@ -12,7 +12,7 @@ services:
       - .:/var/lib/postgresql/RS-data
     networks:
       - reservation_system_default
-  nginx:
+  reservation_system_nginx:
     image: reservation_system_nginx
     # restart: always
     ports:
@@ -21,7 +21,7 @@ services:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
     networks:
       - reservation_system_default
-  backend:
+  reservation_system_backend:
     container_name: reservation_system_backend
     build:
       context: .
