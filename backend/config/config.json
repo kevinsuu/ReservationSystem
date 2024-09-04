@@ -3,21 +3,21 @@
     "username": "postgres",
     "password": "password",
     "database": "reservation_system",
-    "host": "localhost",
+    "host": "postgres",
     "dialect": "postgres"
   },
   "test": {
     "username": "postgres",
     "password": "password",
     "database": "reservation_system",
-    "host": "localhost",
+    "host": "postgres",
     "dialect": "postgres"
   },
   "production": {
     "username": "postgres",
     "password": "password",
     "database": "reservation_system",
-    "host": "localhost",
+    "host": "postgres",
     "dialect": "postgres"
   }
 }
