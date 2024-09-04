@@ -26,17 +26,17 @@ const authMiddleware = require('../middleware/authMiddleware');
 // 球場最新消息
 //
 
-router.post('auth/login', user.login);
-router.post('auth/reset', user.resetPassword);
-router.post('auth/register', controller.register);
+router.post('/auth/login', user.login);
+router.post('/auth/reset', user.resetPassword);
+router.post('/auth/register', controller.register);
 
 router.use(authMiddleware);
 
-router.get('info', controller.info);
-router.get('auth/profile', profile.profileInfo);
-router.put('auth/profile', profile.profileUpdate);
-router.get('reservations/courts', reservations.courts);
-router.get('reservations/create', reservations.create);
-router.get('reservations/search', reservations.search);
+router.get('/info', controller.info);
+router.get('/auth/profile', profile.profileInfo);
+router.put('/auth/profile', profile.profileUpdate);
+router.get('/reservations/courts', reservations.courts);
+// router.get('/reservations/create', reservations.create);
+router.get('/reservations/search', reservations.search);
 // router.get('reservations/cancel/:id', reservations.cancel);
 module.exports = router;
