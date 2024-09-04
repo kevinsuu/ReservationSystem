@@ -1,7 +1,7 @@
 // database/connection.js
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize('test', 'postgres', 'password', {
+const sequelize = new Sequelize('reservation_system', 'postgres', 'password', {
   dialect: 'postgres',
   // host: "localhost",
   host: 'postgres',
