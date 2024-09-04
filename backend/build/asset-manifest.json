@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.js": "/static/js/main.eb470213.js",
+    "main.js": "/static/js/main.a545551e.js",
     "static/media/jf-openhuninn-1.1.ttf": "/static/media/jf-openhuninn-1.1.8b3953f644e641262a5c.ttf",
     "index.html": "/index.html",
-    "main.eb470213.js.map": "/static/js/main.eb470213.js.map"
+    "main.a545551e.js.map": "/static/js/main.a545551e.js.map"
   },
   "entrypoints": [
-    "static/js/main.eb470213.js"
+    "static/js/main.a545551e.js"
   ]
 }
