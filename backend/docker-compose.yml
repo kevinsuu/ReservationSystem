@@ -32,7 +32,7 @@ services:
     ports:
       - '3002:3002'
     depends_on:
-      - postgres
+      - reservation_system_postgres
     command: pm2-runtime start server.js --watch
     networks:
       - reservation_system_default
