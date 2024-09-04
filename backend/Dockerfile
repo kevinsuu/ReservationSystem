@@ -24,7 +24,7 @@
 
 FROM node:16
 
-WORKDIR /reservation_system_backend-app
+WORKDIR /app
 
 COPY package*.json ./
 
