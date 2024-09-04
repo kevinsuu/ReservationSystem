@@ -17,7 +17,7 @@ exports.profileInfo = async (req, res) => {
     // 返回用戶資訊
     res.json({
       status: 'success',
-      user: {
+      userInfo: {
         name: user.name || null,
         email: user.email || null,
         phone: user.phone || null,
@@ -53,7 +53,7 @@ exports.profileUpdate = async (req, res) => {
     res.json({
       status: 'success',
       message: 'Profile updated successfully',
-      user: {
+      userInfo: {
         name: user.name || null,
         email: user.email || null,
         phone: user.phone || null,

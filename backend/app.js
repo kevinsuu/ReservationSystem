@@ -7,8 +7,11 @@ app.use(express.urlencoded({ extended: false }));
 
 // 路由設置
 const indexRouter = require('./routes/index');
-app.use('/', indexRouter);
-
+app.use('/api', indexRouter);
+app.use(express.static(path.join(__dirname, 'build')));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 // 其他路由或錯誤處理邏輯
 app.use((req, res, next) => {
   res.status(404).send('Not Found');
