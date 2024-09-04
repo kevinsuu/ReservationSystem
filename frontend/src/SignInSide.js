@@ -24,14 +24,15 @@ const defaultTheme = createTheme({
 export default function SignInSide() {
   const navigate = useNavigate();
   const [error, setError] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("kevin123@gmail.com");
+  const [password, setPassword] = useState("123");
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const response = await fetch(process.env.REACT_APP_API_URL + "/api/login", {
+      const response = await fetch(process.env.REACT_APP_API_URL + "/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

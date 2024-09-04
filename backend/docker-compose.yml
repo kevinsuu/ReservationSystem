@@ -1,6 +1,6 @@
 services:
   postgres:
-    image: postgres
+    image: reservation_system_postgres
     # restart: always
     environment:
       POSTGRES_USER: postgres
@@ -13,7 +13,7 @@ services:
     networks:
       - reservation_system_default
   nginx:
-    image: nginx
+    image: reservation_system_nginx
     # restart: always
     ports:
       - '3003:3003'
@@ -22,7 +22,7 @@ services:
     networks:
       - reservation_system_default
   backend:
-    container_name: backend
+    container_name: reservation_system_backend
     build:
       context: .
       dockerfile: Dockerfile

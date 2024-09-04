@@ -31,7 +31,7 @@ export default function ForgotPassword() {
     event.preventDefault();
 
     try {
-      const response = await fetch(process.env.REACT_APP_API_URL + "/api/reset", {
+      const response = await fetch(process.env.REACT_APP_API_URL + "/api/auth/reset", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
