@@ -27,11 +27,12 @@ FROM node:16
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm install
+
 
 # 安裝 PM2
 RUN npm install -g pm2
-
+RUN npm install -g sequelize-cli
+RUN npm install
 COPY . .
 
 # 使用 PM2 啟動應用
