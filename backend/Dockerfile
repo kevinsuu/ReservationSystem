@@ -24,7 +24,7 @@
 
 FROM node:16
 
-WORKDIR /toeic-website-app
+WORKDIR /reservation_system_backend-app
 
 COPY package*.json ./
 
