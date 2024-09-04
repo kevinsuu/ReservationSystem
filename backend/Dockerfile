@@ -24,7 +24,7 @@
 
 FROM node:16
 
-WORKDIR /app
+WORKDIR /toeic-website-app
 
 COPY package*.json ./
 
